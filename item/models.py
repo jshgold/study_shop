@@ -27,7 +27,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,related_name='products')
     name = models.CharField(max_length=200,db_index=True)
     slug = models.SlugField(max_length=200,unique=True,db_index=True,allow_unicode=True)
-    image = models.ImageField(upload_to='products/%Y/%m/%d',blank=True)
+    image = models.ImageField(upload_to='images/products/%Y/%m/%d',blank=True)
     description = models.TextField(blank=True)
     meta_description = models.TextField(blank=True)
     price = models.PositiveIntegerField()
@@ -46,5 +46,5 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('item:product_datail',args=[self.id,self.slug])
+        return reverse('item:product_detail',args=[self.id,self.slug])
 
